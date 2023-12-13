@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Form Input Nasabah</title>
+</head>
+<body>
+<div>
+    <form
+            th:action="@{/app/nasabah/save}"
+            th:method="post"
+            method="post"
+            th:object="${nasabah}">
+        <div>
+            <label for="id">ID</label>
+            <input type="text" name="id" id="id"/>
+        </div>
+        <div>
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" name="nama" id="nama"/>
+        </div>
+        <div>
+            <label for="saldo">Saldo</label>
+            <input type="number" name="saldo" id="saldo"/>
+        </div>
+        <div>
+            <button type="reset">Kembali</button>
+            <button type="submit">Kirim</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
