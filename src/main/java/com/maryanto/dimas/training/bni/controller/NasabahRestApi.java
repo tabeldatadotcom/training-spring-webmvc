@@ -1,15 +1,15 @@
 package com.maryanto.dimas.training.bni.controller;
 
+import com.maryanto.dimas.training.bni.dto.NasabahDto;
 import com.maryanto.dimas.training.bni.model.Nasabah;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/nasabah/v1")
@@ -34,5 +34,15 @@ public class NasabahRestApi {
         }
 
         return ResponseEntity.ok(dimas);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<?> save(
+            @RequestBody @Valid NasabahDto.NewRequest data) {
+        Nasabah nasabah = new Nasabah(
+                UUID.randomUUID().toString(),
+                "001",
+                data.getNamaDepan() + data.getNamaBelakang(), BigDecimal.ZERO);
+        return ResponseEntity.ok(nasabah);
     }
 }
